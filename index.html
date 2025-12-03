@@ -1,1 +1,472 @@
-<h1>hello</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFCC - Korean Family Counseling & Research Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        /* Header and Navigation */
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+            border-bottom: 2px solid white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #1e3c72;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 0.5rem;
+        }
+
+        .section-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .service-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.2);
+        }
+
+        .service-card h3 {
+            color: #1e3c72;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .service-card p {
+            color: #555;
+            margin-bottom: 0;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .contact-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: #f8f9fa;
+            border-left: 4px solid #2a5298;
+            border-radius: 5px;
+        }
+
+        .contact-item h3 {
+            color: #1e3c72;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Join Us Form */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2a5298;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(30, 60, 114, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .section h2 {
+                font-size: 2rem;
+            }
+
+            .section-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">KFCC</div>
+            <ul class="nav-links">
+                <li><a href="#" onclick="showSection('heritage')">Heritage</a></li>
+                <li><a href="#" onclick="showSection('mission')">Mission Statement</a></li>
+                <li><a href="#" onclick="showSection('location')">Where you can find us</a></li>
+                <li><a href="#" onclick="showSection('join')">Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Korean Family Counseling & Research Center</h1>
+        <p>Empowering communities through legal support, education, and social mobility advancement</p>
+    </div>
+
+    <main>
+        <!-- Heritage Section -->
+        <section id="heritage" class="section active">
+            <h2>Heritage</h2>
+            <div class="section-content">
+                <p>
+                    The Korean Family Counseling & Research Center (KFCC) was founded with a deep commitment to serving 
+                    Korean families and communities. Our organization has been built on a foundation of understanding, 
+                    respect, and dedication to the unique needs of Korean families navigating life in a new cultural context.
+                </p>
+                <p>
+                    Since our establishment, KFCC has been at the forefront of providing comprehensive support services 
+                    that address the multifaceted challenges faced by Korean families. We understand that successful 
+                    integration and social mobility require more than just individual effort—they require a strong 
+                    community foundation, access to resources, and ongoing support.
+                </p>
+                <p>
+                    Our heritage is rooted in the values of family unity, education, and community empowerment. We 
+                    believe that by strengthening families, we strengthen entire communities, creating a ripple effect 
+                    of positive change that extends far beyond our immediate reach.
+                </p>
+                <p>
+                    Over the years, KFCC has evolved to meet the changing needs of our community while staying true 
+                    to our core mission of advancing social mobility and providing essential services that enable 
+                    families to thrive.
+                </p>
+            </div>
+        </section>
+
+        <!-- Mission Statement Section -->
+        <section id="mission" class="section">
+            <h2>Mission Statement</h2>
+            <div class="section-content">
+                <p>
+                    The Korean Family Counseling & Research Center (KFCC) is dedicated to advancing social mobility 
+                    and empowering Korean families through comprehensive support services, education, and community 
+                    development initiatives.
+                </p>
+                <p>
+                    Our mission is to provide accessible legal support, deliver high-quality education and training 
+                    programs, and establish community centers that serve as hubs for growth, connection, and 
+                    advancement. We are committed to breaking down barriers and creating pathways to success for 
+                    individuals and families in our community.
+                </p>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <h3>Legal Support</h3>
+                        <p>
+                            We provide essential legal assistance to help families navigate complex legal systems, 
+                            understand their rights, and access justice. Our legal support services ensure that 
+                            community members have the resources they need to protect themselves and their families.
+                        </p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Education & Training Programs</h3>
+                        <p>
+                            Our comprehensive education and training programs equip community members with the skills, 
+                            knowledge, and confidence needed to succeed. From language classes to professional 
+                            development workshops, we offer pathways to personal and professional growth.
+                        </p>
+                    </div>
+                    <div class="service-card">
+                        <h3>Community Center Establishment</h3>
+                        <p>
+                            We establish and maintain community centers that serve as gathering places for connection, 
+                            learning, and support. These centers provide a physical space where families can access 
+                            resources, participate in programs, and build lasting relationships within the community.
+                        </p>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem;">
+                    Through these core services, KFCC works tirelessly to create opportunities for social mobility 
+                    and ensure that every family in our community has the tools and support they need to achieve 
+                    their goals and build a brighter future.
+                </p>
+            </div>
+        </section>
+
+        <!-- Location Section -->
+        <section id="location" class="section">
+            <h2>Where you can find us</h2>
+            <div class="section-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <h3>Main Office</h3>
+                        <p>Address information coming soon</p>
+                        <p>Please contact us for our current location and office hours.</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Community Centers</h3>
+                        <p>We are actively working to establish community centers in key areas to better serve our community.</p>
+                        <p>Check back soon for locations and opening dates.</p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Contact Information</h3>
+                        <p>Email: info@kfcc.org</p>
+                        <p>Phone: (555) 123-4567</p>
+                        <p>Hours: Monday - Friday, 9:00 AM - 5:00 PM</p>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem;">
+                    We are committed to making our services accessible to all members of the community. If you need 
+                    assistance or have questions about our locations, please don't hesitate to reach out to us.
+                </p>
+            </div>
+        </section>
+
+        <!-- Join Us Section -->
+        <section id="join" class="section">
+            <h2>Join Us</h2>
+            <div class="section-content">
+                <p>
+                    We welcome individuals who share our passion for community empowerment and social mobility. 
+                    Whether you're interested in volunteering, partnering with us, or accessing our services, 
+                    we'd love to hear from you.
+                </p>
+                <p>
+                    Join us in making a difference in the lives of Korean families and communities. Together, 
+                    we can create lasting positive change.
+                </p>
+                <form style="margin-top: 2rem;">
+                    <div class="form-group">
+                        <label for="name">Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="interest">I'm interested in:</label>
+                        <select id="interest" name="interest" style="width: 100%; padding: 0.75rem; border: 2px solid #ddd; border-radius: 5px; font-size: 1rem; font-family: inherit;">
+                            <option value="volunteer">Volunteering</option>
+                            <option value="services">Accessing Services</option>
+                            <option value="partnership">Partnership Opportunities</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5"></textarea>
+                    </div>
+                    <button type="submit" class="btn">Submit</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Korean Family Counseling & Research Center (KFCC). All rights reserved.</p>
+    </footer>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Show the selected section
+            const selectedSection = document.getElementById(sectionId);
+            if (selectedSection) {
+                selectedSection.classList.add('active');
+            }
+
+            // Scroll to top of main content
+            document.querySelector('main').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Handle form submission
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your interest! We will contact you soon.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
